@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+
+
+/* So I don't have to add hover styling in tailwind for EVERY LINK */
+a {
+    transition: 0.1s all;
+}
+a:hover {
+    color: #ff6900; /* tailwind orange-500 */
+    text-decoration: underline;
+}
