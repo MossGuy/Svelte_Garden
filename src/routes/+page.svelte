@@ -4,6 +4,9 @@
     import { goto } from '$app/navigation';
     import { Tooltip } from "flowbite-svelte";
 
+    export let data: {
+    };
+
     let searchValue = '';
 
     function handleSearch() {
