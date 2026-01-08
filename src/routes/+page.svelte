@@ -2,6 +2,7 @@
     import svelteImage from '$lib/assets/Svelte_Logo.png';
 
     import { goto } from '$app/navigation';
+    import { Tooltip } from "flowbite-svelte";
 
     let searchValue = '';
 
@@ -35,9 +36,14 @@
 
         <button
             on:click={handleSearch}
-            class="bg-teal-600 hover:bg-teal-500 transition rounded px-3 mx-2 text-white font-semibold"
+            class="bg-teal-600 hover:bg-teal-500 transition rounded px-3 mx-2 text-white font-semibold cursor-pointer"
         >
             Search
         </button>
     </div>
+</section>
+
+<section>
+    <button class="bg-gray-500 py-1 px-2 rounded">Test button</button>
+    <Tooltip class="text-default">Tooltip content</Tooltip>
 </section>

@@ -25,3 +25,6 @@ export const load: PageLoad = async ({ url, fetch }) => {
         results: data.hits
     };
 };
+
+
+
