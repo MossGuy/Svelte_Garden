@@ -7,7 +7,7 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<nav class="flex justify-center text-lg font-semibold border-b-2 pb-1 bg-teal-700">
+<nav class="flex justify-center text-xl text-white font-semibold border-b-2 border-teal-900 pb-1 bg-teal-700">
 	<div class="flex gap-2 mr-auto px-2">
 		<a class="mr-5 hover:underline" href="/">Home</a>
 	</div>
