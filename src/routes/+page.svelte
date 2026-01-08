@@ -42,8 +42,3 @@
         </button>
     </div>
 </section>
-
-<section>
-    <button class="bg-gray-500 py-1 px-2 rounded">Test button</button>
-    <Tooltip class="text-default">Tooltip content</Tooltip>
-</section>
