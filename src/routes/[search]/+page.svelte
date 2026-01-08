@@ -2,6 +2,7 @@
     import { goto } from '$app/navigation';
     import { tick } from 'svelte';
     import { Tooltip } from "flowbite-svelte";
+    import hackerNewsLogo from '$lib/assets/hacker-news.png';
 
     // import bootstrap icons
     import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -40,34 +41,40 @@
 </script>
 
 <!-- inputs ui -->
-<section class="flex flex-col bg-gray-300 p-4 rounded-lg mb-6">
-    <h2 class="text-center text-2xl font-semibold text-teal-700"><i class="bi bi-newspaper"></i> Hacker News</h2>
-    <div class="mb-4 p-4 flex justify-center border-b-2 border-teal-900 gap-2">
+<section class="flex flex-col bg-gray-300 rounded-lg mb-6">
+    <div class="flex items-center justify-center w-100 mx-auto border-b-2 border-teal-900 mb-1">
+        <img src="{hackerNewsLogo}" alt="Hacker News Logo" class="w-12 mb-2" />
+        <h2 class="text-center text-2xl font-semibold text-teal-700"> Hacker News</h2>
+    </div>
+    
+    <div class="px-2 py-4 flex flex-col lg:flex-row justify-center gap-2 lg:gap-8 lg:items-center">
         <input
             bind:this={inputEl}
             bind:value={searchValue}
             on:input={handleInput}
             on:keydown={(e) => e.key === 'Enter' && handleSearch()}
-            class="bg-gray-100 border border-gray-400 border-2 rounded-lg px-4 py-2 w-2/3 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            class="bg-gray-100 border border-gray-400 border-2 rounded-lg px-4 py-2 w-full lg:w-2/3 focus:outline-none focus:ring-2 focus:ring-teal-500"
         />
 
-        <button
-            on:click={handleSearch}
-            class="bg-teal-600 hover:bg-teal-500 transition rounded px-3 text-white font-semibold cursor-pointer"
-        >
-            Search
-        </button>
+        <div class="flex justify-between lg:justify-start gap-4 h-10">
+            <button
+                on:click={handleSearch}
+                class="bg-teal-600 hover:bg-teal-500 transition rounded px-3 text-white font-semibold cursor-pointer"
+            >
+                Search
+            </button>
 
-        <label id="activeSearchLabel" class="my-auto flex items-center gap-1 px-2 py-1 hover:underline cursor-pointer">
-            Active search
-            <input
-                type="checkbox"
-                bind:checked={activeSearch}
-            />
-        </label>
-        <Tooltip triggeredBy="#activeSearchLabel" class="text-default bg-gray-300">
-            When enabled, searches are performed automatically as you type (with a small delay).
-        </Tooltip>
+            <label id="activeSearchLabel" class="text-sm my-auto flex items-center gap-1 px-2 py-1 hover:underline cursor-pointer">
+                Active search
+                <input
+                    type="checkbox"
+                    bind:checked={activeSearch}
+                />
+            </label>
+            <Tooltip triggeredBy="#activeSearchLabel" placement="bottom" class="text-default bg-gray-400">
+                When enabled, searches are performed automatically as you type (with a small delay).
+            </Tooltip>
+        </div>
     </div>
 </section>
 
