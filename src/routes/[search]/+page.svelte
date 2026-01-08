@@ -26,7 +26,9 @@
         inputEl?.focus();
     }
 
+    // watch input changes for active search
     function handleInput() {
+        // only trigger when active search is enabled
         if (!activeSearch) return;
 
         clearTimeout(debounceTimeout);
@@ -70,10 +72,18 @@
     {:else}
         <ul>
             {#each data.results as item}
-                <li>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <li class="px-1 py-2 border-b border-gray-300">
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-teal-700 font-semibold">
                         {item.title}
                     </a>
+                    <p class="text-sm">
+                        {new Date(item.updated_at).toLocaleDateString('nl-NL')}
+                        <!-- loop through _tags -->
+                         tags: 
+                         {#each item._tags as tag}
+                            <span class="bg-gray-200 text-gray-700 px-1 rounded mr-1">{tag}</span>
+                         {/each}
+                    </p>
                 </li>
             {/each}
         </ul>
