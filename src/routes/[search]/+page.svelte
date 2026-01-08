@@ -39,36 +39,39 @@
     }
 </script>
 
-<section class="mb-4 p-4 flex justify-center border-b-2 border-teal-900 gap-2">
-    <input
-        bind:this={inputEl}
-        bind:value={searchValue}
-        on:input={handleInput}
-        on:keydown={(e) => e.key === 'Enter' && handleSearch()}
-        class="border border-gray-400 border-2 rounded-lg px-4 py-2 w-2/3 focus:outline-none focus:ring-2 focus:ring-teal-500"
-    />
-
-
-
-    <button
-        on:click={handleSearch}
-        class="bg-teal-600 hover:bg-teal-500 transition rounded px-3 text-white font-semibold cursor-pointer"
-    >
-        Search
-    </button>
-
-    <label id="activeSearchLabel" class="my-auto flex items-center gap-1 px-2 py-1 hover:underline cursor-pointer">
-        Active search
+<!-- inputs ui -->
+<section class="flex flex-col bg-gray-300 p-4 rounded-lg mb-6">
+    <h2 class="text-center text-2xl font-semibold text-teal-700"><i class="bi bi-newspaper"></i> Hacker News</h2>
+    <div class="mb-4 p-4 flex justify-center border-b-2 border-teal-900 gap-2">
         <input
-            type="checkbox"
-            bind:checked={activeSearch}
+            bind:this={inputEl}
+            bind:value={searchValue}
+            on:input={handleInput}
+            on:keydown={(e) => e.key === 'Enter' && handleSearch()}
+            class="bg-gray-100 border border-gray-400 border-2 rounded-lg px-4 py-2 w-2/3 focus:outline-none focus:ring-2 focus:ring-teal-500"
         />
-    </label>
-    <Tooltip triggeredBy="#activeSearchLabel" class="text-default bg-gray-300">
-        When enabled, searches are performed automatically as you type (with a small delay).
-    </Tooltip>
+
+        <button
+            on:click={handleSearch}
+            class="bg-teal-600 hover:bg-teal-500 transition rounded px-3 text-white font-semibold cursor-pointer"
+        >
+            Search
+        </button>
+
+        <label id="activeSearchLabel" class="my-auto flex items-center gap-1 px-2 py-1 hover:underline cursor-pointer">
+            Active search
+            <input
+                type="checkbox"
+                bind:checked={activeSearch}
+            />
+        </label>
+        <Tooltip triggeredBy="#activeSearchLabel" class="text-default bg-gray-300">
+            When enabled, searches are performed automatically as you type (with a small delay).
+        </Tooltip>
+    </div>
 </section>
 
+<!-- news search results -->
 <section>
     {#if data.results.length === 0}
         <p>No results found.</p>

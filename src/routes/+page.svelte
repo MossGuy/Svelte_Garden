@@ -23,7 +23,8 @@
 </header>
 
 <section>
-    <p class="text-center text-xl">Search the hacker news api</p>
+    <p class="text-center text-xl">Search the news!</p>
+    <p class="text-center text-xs">Made possible by: <a href="https://hn.algolia.com/api" target="new" class="text-orange-700">Hacker News API</a></p>
 
     <div class="flex justify-center mb-6 mt-2">
         <input
