@@ -13,6 +13,6 @@
 	</div>
 </nav>
 
-<main class="bg-gray-200 min-h-screen px-4 py-6">
+<main class="px-4 py-6">
 	{@render children()}
 </main>
