@@ -3,6 +3,9 @@
     import { tick } from 'svelte';
     import { Tooltip } from "flowbite-svelte";
 
+    // import bootstrap icons
+    import 'bootstrap-icons/font/bootstrap-icons.css';
+
     export let data: {
         query: string | null;
         results: any[];
@@ -76,14 +79,20 @@
                     <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-teal-700 font-semibold">
                         {item.title}
                     </a>
-                    <p class="text-sm">
-                        {new Date(item.updated_at).toLocaleDateString('nl-NL')}
-                        <!-- loop through _tags -->
-                         tags: 
-                         {#each item._tags as tag}
-                            <span class="bg-gray-200 text-gray-700 px-1 rounded mr-1">{tag}</span>
-                         {/each}
-                    </p>
+                    <div class="text-sm flex flex-col md:flex-row gap-2 md:gap-4 mt-1">
+                        <p>
+                            <i class="bi bi-calendar-event-fill text-teal-800"></i>
+                            Updated at:
+                            <span class="text-gray-700">{new Date(item.updated_at).toLocaleDateString('nl-NL')}</span>
+                        </p>
+                        <p>
+                            <i class="bi bi-tags-fill text-teal-800"></i>
+                            Tags: 
+                            {#each item._tags as tag}
+                                <span class="bg-gray-200 text-gray-700 px-1 rounded mr-1">{tag}</span>
+                            {/each}
+                        </p>
+                    </div>
                 </li>
             {/each}
         </ul>
