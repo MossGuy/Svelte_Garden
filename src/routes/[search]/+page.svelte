@@ -26,7 +26,7 @@
 
         debounceTimeout = setTimeout(() => {
             handleSearch();
-            console.log('Searching for:', searchValue);
+            // console.log('Searching for:', searchValue);
         }, 200);
     }
 </script>
