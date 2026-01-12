@@ -8,7 +8,7 @@
         results: any[];
     };
 
-    let searchValue = '';
+    let searchValue = data.query || '';
     let activeSearch = true;
 
     let debounceTimeout: ReturnType<typeof setTimeout>;
