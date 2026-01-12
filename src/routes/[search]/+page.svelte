@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
+    import { invalidate, replaceState, goto } from '$app/navigation';
     import { Tooltip } from "flowbite-svelte";
     import hackerNewsLogo from '$lib/assets/hacker-news.png';
 
@@ -9,15 +9,23 @@
     };
 
     let searchValue = data.query || '';
-    let activeSearch = true;
+    let activeSearch = false;
 
     let debounceTimeout: ReturnType<typeof setTimeout>;
 
     function handleSearch() {
         if (!searchValue.trim()) return;
 
-        goto(`/search?query=${encodeURIComponent(searchValue)}`);
+        const url = `/search?query=${encodeURIComponent(searchValue)}`;
+
+        goto(url, {
+            replaceState: true,
+            keepFocus: true,
+            noScroll: true
+        });
     }
+
+
 
     function handleInput() {
         if (!activeSearch) return;
@@ -26,7 +34,6 @@
 
         debounceTimeout = setTimeout(() => {
             handleSearch();
-            // console.log('Searching for:', searchValue);
         }, 200);
     }
 </script>
