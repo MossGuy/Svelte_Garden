@@ -4,8 +4,7 @@
     import { goto } from '$app/navigation';
     import { Tooltip } from "flowbite-svelte";
 
-    export let data: {
-    };
+    // export let data: {};
 
     let searchValue = '';
 
@@ -15,6 +14,10 @@
         goto(`/search?query=${encodeURIComponent(searchValue)}`);
     }
 </script>
+
+<svelte:head>
+	<title>Svelte Garden | Home</title>
+</svelte:head>
 
 <header class="flex justify-center items-center py-6 flex-col lg:flex-row">
     <img class="w-40" src="{svelteImage}" alt="">
