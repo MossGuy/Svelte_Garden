@@ -38,6 +38,10 @@
     }
 </script>
 
+<svelte:head>
+	<title>Svelte Garden | News</title>
+</svelte:head>
+
 
 <section class="flex flex-col bg-gray-300 rounded-lg mb-6">
     <div class="flex items-center justify-center w-100 mx-auto border-b-2 border-teal-900 mb-1">
