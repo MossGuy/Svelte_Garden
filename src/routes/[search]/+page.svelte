@@ -83,9 +83,10 @@
     {:else}
         <ul>
             {#each data.results as item}
-                <li>
+                <li class="mb-3 border-b border-gray-500 pb-2">
+                    <h3 class="text-teal-800 font-semibold">{item.title}</h3>
                     <a href={item.url} target="_blank" rel="noopener noreferrer">
-                        {item.title}
+                        {item.url}
                     </a>
                 </li>
             {/each}
