@@ -13,6 +13,7 @@
 
     let debounceTimeout: ReturnType<typeof setTimeout>;
 
+    // handle new search requests
     function handleSearch() {
         if (!searchValue.trim()) return;
 
@@ -25,8 +26,7 @@
         });
     }
 
-
-
+    // active search handler with debounce
     function handleInput() {
         if (!activeSearch) return;
 
@@ -42,7 +42,7 @@
 	<title>Svelte Garden | News</title>
 </svelte:head>
 
-
+<!-- searchbar ui -->
 <section class="flex flex-col bg-gray-300 rounded-lg mb-6">
     <div class="flex items-center justify-center w-100 mx-auto border-b-2 border-teal-900 mb-1">
         <img src="{hackerNewsLogo}" alt="Hacker News Logo" class="w-12 mb-2" />
@@ -81,6 +81,7 @@
     </div>
 </section>
 
+<!-- news article results -->
 <section>
     {#if data.results.length === 0}
         <p>No results found.</p>
