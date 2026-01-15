@@ -11,7 +11,6 @@
     };
 
     let selectedExperience = data.framework_experiences[0];
-    $: console.log('Selected experience:', selectedExperience['title']);
 </script>
 
 <svelte:head>
