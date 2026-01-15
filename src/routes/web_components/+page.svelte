@@ -21,7 +21,7 @@
     <h1 class="text-4xl font-bold text-center my-6">Web Components gallery</h1>
 </section>
 
-<section class="border-b">
+<section>
     <h2>Reactive div:</h2>
     <!-- toggle buttons -->
     <div
