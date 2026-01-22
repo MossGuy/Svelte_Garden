@@ -3,13 +3,10 @@
     import { Tooltip } from "flowbite-svelte";
     import hackerNewsLogo from '$lib/assets/hacker-news.png';
 
-    export let data: {
-        query: string | null;
-        results: any[];
-    };
+    let { data } = $props<{query: string, results: any[]}>();
 
-    let searchValue = data.query || '';
-    let activeSearch = false;
+    let searchValue = $state(data.query || '');
+    let activeSearch = $state(false);
 
     let debounceTimeout: ReturnType<typeof setTimeout>;
 
@@ -26,16 +23,19 @@
         });
     }
 
-    // active search handler with debounce
-    function handleInput() {
+    // active search $effect met debounceTimeout
+    $effect(() => {
         if (!activeSearch) return;
+        if (!searchValue.trim()) return;
 
         clearTimeout(debounceTimeout);
 
+        // nieuwe zoekresultaten op basis van nieuwe input, refreshed elke 0.2 seconden
         debounceTimeout = setTimeout(() => {
             handleSearch();
         }, 200);
-    }
+    });
+
 </script>
 
 <svelte:head>
@@ -54,14 +54,13 @@
             type="text"
             placeholder="Look for something else?"
             bind:value={searchValue}
-            on:input={handleInput}
-            on:keydown={(e) => e.key === 'Enter' && handleSearch()}
+            onkeydown={(e) => e.key === 'Enter' && handleSearch()}
             class="border border-gray-400 border-2 rounded-lg px-4 py-2 lg:w-2/3 focus:outline-none focus:ring-2 focus:ring-teal-500"
         />
 
         <div class="flex justify-between lg:justify-start gap-4 h-10">
             <button
-                on:click={handleSearch}
+                onclick={handleSearch}
                 class="bg-teal-600 hover:bg-teal-500 transition rounded px-3 text-white font-semibold cursor-pointer"
             >
                 Search
