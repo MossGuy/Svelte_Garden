@@ -5,12 +5,9 @@
         duration: 200
     });
 
-    
-    export let data: {
-        framework_experiences: any[]
-    };
+    let { data } = $props<{ data: { framework_experiences: any[] } }>();
 
-    let selectedExperience = data.framework_experiences[0];
+    let selectedExperience = $derived(data.framework_experiences[0]);
 </script>
 
 <svelte:head>
@@ -31,8 +28,8 @@
                 <button
                 hidden={experience.hidden}
                 class="text-teal-700 font-semibold px-4 py-2 m-2 hover:text-orange-600 hover:underline transition cursor-pointer"
-                class:selected={experience == selectedExperience}
-                on:click={() => selectedExperience = experience}
+                class:selected={experience === selectedExperience}
+                onclick={() => selectedExperience = experience}
                 >
                     {experience.title}
                 </button>
