@@ -5,6 +5,13 @@
         duration: 200
     });
 
+    import AlertInfo from './AlertInfo.svelte';
+    import AlertError from './AlertError.svelte';
+    import AlertWarning from './AlertWarning.svelte';
+    import Modal from './Modal.svelte';
+
+
+
     let { data } = $props<{ data: { framework_experiences: any[] } }>();
 
     let selectedExperience = $derived(data.framework_experiences[0]);
@@ -13,6 +20,12 @@
 <svelte:head>
     <title>Svelte Garden | Components</title>
 </svelte:head>
+
+<section class="flex flex-col gap-1">
+    <AlertInfo message="Welcome to the Web Components gallery!" />
+    <AlertError message="Some components may not function as expected." />
+    <AlertWarning message="This page is under construction. More components will be added soon!" />
+</section>
 
 <section>
     <h1 class="text-4xl font-bold text-center my-6">Web Components gallery</h1>
@@ -61,6 +74,10 @@
             {/if}
         {/each}
     </div>
+</section>
+
+<section>
+    <h2>Buttons that trigger events:</h2>
 </section>
 
 <style>
