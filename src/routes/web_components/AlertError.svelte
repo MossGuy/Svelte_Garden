@@ -17,7 +17,7 @@ out:fly={{ y: -20, duration: 150 }}
 class="bg-red-200 border border-red-600 text-red-600 rounded p-1 flex justify-between items-center"
 >
     <p>
-        <i class="bi bi-info-circle"></i>
+        <i class="bi bi-exclamation-circle"></i>
         Error: {message}
     </p>
 

@@ -108,14 +108,14 @@
         onclick={() => showAlertError = true}
         class="border border-red-700 text-red-700 bg-red-200 border-2 rounded p-1"
         >
-            Info alert
+            Error alert
         </button>
         
         <button
         onclick={() => showAlertWarning = true}
         class="border border-orange-700 text-orange-700 bg-orange-200 border-2 rounded p-1"
         >
-            Info alert
+            Warning alert
         </button>
     </div>
 </section>
