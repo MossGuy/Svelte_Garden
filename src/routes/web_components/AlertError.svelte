@@ -2,7 +2,7 @@
     import { fly } from 'svelte/transition';
 
     let { 
-        message,
+        message = $bindable(""),
         visible = $bindable(false)
     } = $props<{
         message: string;

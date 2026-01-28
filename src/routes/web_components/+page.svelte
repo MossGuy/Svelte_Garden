@@ -5,19 +5,28 @@
         duration: 200
     });
 
+    // alert info
     import AlertInfo from './AlertInfo.svelte';
-    import AlertError from './AlertError.svelte';
-    import AlertWarning from './AlertWarning.svelte';
-    import Modal from './Modal.svelte';
-
     let showAlertInfo = $state(false);
+    let alertInfoMessage = $state("Welcome to the Web Components gallery!");
+
+    // alert error
+    import AlertError from './AlertError.svelte';
     let showAlertError = $state(false);
+    let alertErrorMessage = $state("Some components may not function as expected.");
+
+    // alert warning
+    import AlertWarning from './AlertWarning.svelte';
     let showAlertWarning = $state(false);
+    let alertWarningMessage = $state("This page is under construction. More components may be added later!");
+
+    // cookies modal
+    import Modal from './Modal.svelte';
     let showModalCookies = $state(false);
 
 
+    // reactive div data
     let { data } = $props<{ data: { framework_experiences: any[] } }>();
-
     let selectedExperience = $derived(data.framework_experiences[0]);
 </script>
 
@@ -27,9 +36,9 @@
 
 <!-- alerts and modal -->
 <section class="flex flex-col gap-1">
-    <AlertInfo bind:visible={showAlertInfo} message="Welcome to the Web Components gallery!" />
-    <AlertError bind:visible={showAlertError} message="Some components may not function as expected." />
-    <AlertWarning bind:visible={showAlertWarning} message="This page is under construction. More components will be added soon!" />
+    <AlertInfo bind:visible={showAlertInfo} bind:message={alertInfoMessage} />
+    <AlertError bind:visible={showAlertError} bind:message={alertErrorMessage} />
+    <AlertWarning bind:visible={showAlertWarning} bind:message={alertWarningMessage} />
 </section>
 
 <!-- page title -->
