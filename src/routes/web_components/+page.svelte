@@ -23,7 +23,16 @@
     // cookies modal
     import ModalCookies from './ModalCookies.svelte';
     // modal visibility TODO: make it show only once per user session
-    let showModalCookies = $state(true);
+    let showModalCookies = $state(false);
+
+    $effect.root(() => {
+        const timer = setTimeout(() => {
+            showModalCookies = true;
+        }, 3000);
+
+        // clear timeout on cleanup
+        return () => clearTimeout(timer);
+    }); 
 
 
     // reactive div data
@@ -124,10 +133,6 @@
             Warning alert
         </button>
     </div>
-</section>
-
-<section class="h-screen">
-
 </section>
 
 <style>

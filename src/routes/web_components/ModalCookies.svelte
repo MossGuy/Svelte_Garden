@@ -9,7 +9,11 @@
 </script>
 
 {#if visible}
-<div class="border border-2 rounded p-1 h-64 w-100 mx-auto bg-white shadow-lg flex flex-col gap-4 fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+<div
+class="border border-2 rounded p-1 h-64 w-100 mx-auto bg-white shadow-lg flex flex-col gap-4 fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
+in:fly={{ y: -20, duration: 1000 }}
+out:fly={{ y: -20, duration: 300 }}
+>
     <h2>
         <i class="bi bi-cookie"></i>
         I need to inform you about cookies, you know the drill.
@@ -23,14 +27,25 @@
     </div>
     <div class="flex justify-between">
         <button
-        onclick={() => alert("HAHA, in your dreams!")}
+        onclick={
+        () => {
+
+            console.info("Choice is but an illusion...");
+            visible = false;
+            }
+        }
         class="py-1 px-3 rounded border border-2"
         >
             Reject all cookies
         </button>
         
         <button
-        onclick={() => visible = false}
+        onclick={
+        () => {
+            console.info("I shall be very delicate with your data...");
+            visible = false;
+            }
+        }
         class="py-1 px-3 rounded bg-green-600 text-white"
         >
             Accept all cookies
