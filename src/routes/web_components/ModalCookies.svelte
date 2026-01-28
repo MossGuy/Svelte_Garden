@@ -12,10 +12,10 @@
 <div class="border border-2 rounded p-1 h-64 w-100 mx-auto bg-white shadow-lg flex flex-col gap-4 fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
     <h2>
         <i class="bi bi-cookie"></i>
-        Ik moet informeren over cookies, je kent het riedeltje inmiddels wel.
+        I need to inform you about cookies, you know the drill.
     </h2>
     <div class="overflow-y-scroll">
-        <p>Elke website maakt nu eenmaal gebruik van cooies, al heeft de ontwikkelaar daar geen enkele regel code over geschreven...</p>
+        <p>Every website makes use of cookies, even if the programmer never wrote any code about it...</p>
         <br>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet blandit orci, sed volutpat nunc. Quisque commodo posuere quam sit amet fermentum. Phasellus nec vehicula dui. Nulla ornare dui eu enim ornare, eu fringilla dolor egestas. Praesent fermentum quis quam et laoreet. Curabitur ac vulputate orci. Donec nec scelerisque tortor. Mauris quis felis pulvinar, convallis mi quis, hendrerit metus. Integer eu dolor vulputate, feugiat eros non, auctor massa. Ut id quam iaculis, vulputate lectus ut, mattis tellus. Suspendisse in mauris vitae lorem commodo aliquet eu sed orci. Nam vel euismod magna, vitae rhoncus enim. Fusce iaculis ipsum ac purus posuere posuere. Curabitur bibendum sapien gravida fringilla lacinia. Mauris quis iaculis eros.
@@ -26,14 +26,14 @@
         onclick={() => alert("HAHA, in your dreams!")}
         class="py-1 px-3 rounded border border-2"
         >
-            Alle cookies wijgeren
+            Reject all cookies
         </button>
         
         <button
         onclick={() => visible = false}
         class="py-1 px-3 rounded bg-green-600 text-white"
         >
-            Alle cookies accepteren
+            Accept all cookies
         </button>
     </div>
 </div>
