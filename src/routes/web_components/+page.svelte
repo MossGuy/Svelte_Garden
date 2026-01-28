@@ -34,8 +34,8 @@
     <title>Svelte Garden | Components</title>
 </svelte:head>
 
-<!-- alerts and modal -->
-<section class="flex flex-col gap-1">
+<!-- alerts and modal container -->
+<section class="flex flex-col gap-1 fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-lg z-50">
     <AlertInfo bind:visible={showAlertInfo} bind:message={alertInfoMessage} />
     <AlertError bind:visible={showAlertError} bind:message={alertErrorMessage} />
     <AlertWarning bind:visible={showAlertWarning} bind:message={alertWarningMessage} />
@@ -118,6 +118,10 @@
             Info alert
         </button>
     </div>
+</section>
+
+<section class="h-screen">
+
 </section>
 
 <style>
