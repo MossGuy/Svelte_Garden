@@ -10,6 +10,10 @@
     import AlertWarning from './AlertWarning.svelte';
     import Modal from './Modal.svelte';
 
+    let showAlertInfo = $state(false);
+    let showAlertError = $state(false);
+    let showAlertWarning = $state(false);
+    let showModalCookies = $state(false);
 
 
     let { data } = $props<{ data: { framework_experiences: any[] } }>();
@@ -21,16 +25,19 @@
     <title>Svelte Garden | Components</title>
 </svelte:head>
 
+<!-- alerts and modal -->
 <section class="flex flex-col gap-1">
-    <AlertInfo message="Welcome to the Web Components gallery!" />
-    <AlertError message="Some components may not function as expected." />
-    <AlertWarning message="This page is under construction. More components will be added soon!" />
+    <AlertInfo bind:visible={showAlertInfo} message="Welcome to the Web Components gallery!" />
+    <AlertError bind:visible={showAlertError} message="Some components may not function as expected." />
+    <AlertWarning bind:visible={showAlertWarning} message="This page is under construction. More components will be added soon!" />
 </section>
 
+<!-- page title -->
 <section>
     <h1 class="text-4xl font-bold text-center my-6">Web Components gallery</h1>
 </section>
 
+<!-- reactive div -->
 <section>
     <h2>Reactive div:</h2>
     <!-- toggle buttons -->
@@ -76,8 +83,32 @@
     </div>
 </section>
 
+<!-- event buttons -->
 <section>
     <h2>Buttons that trigger events:</h2>
+
+    <div>
+        <button
+        onclick={() => showAlertInfo = true}
+        class="border border-blue-700 text-blue-700 bg-blue-200 border-2 rounded p-1"
+        >
+            Info alert
+        </button>
+
+        <button
+        onclick={() => showAlertError = true}
+        class="border border-red-700 text-red-700 bg-red-200 border-2 rounded p-1"
+        >
+            Info alert
+        </button>
+        
+        <button
+        onclick={() => showAlertWarning = true}
+        class="border border-orange-700 text-orange-700 bg-orange-200 border-2 rounded p-1"
+        >
+            Info alert
+        </button>
+    </div>
 </section>
 
 <style>

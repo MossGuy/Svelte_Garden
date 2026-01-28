@@ -1,19 +1,30 @@
 <script lang="ts">
-    let props = $props();
-    let visible = $state(false);
+    import { fly } from 'svelte/transition';
 
+    let { 
+        message,
+        visible = $bindable(false)
+    } = $props<{
+        message: string;
+        visible?: boolean;
+    }>();
 </script>
 
 {#if visible}
-<div class="bg-orange-200 border border-orange-600 text-orange-600 rounded p-1 flex justify-between items-center">
+<div
+in:fly={{ y: -20, duration: 300 }}
+out:fly={{ y: -20, duration: 150 }}
+class="bg-orange-200 border border-orange-600 text-orange-600 rounded p-1 flex justify-between items-center"
+>
     <p>
         <i class="bi bi-exclamation-triangle"></i>
-        Warning: {props.message}
+        Warning: {message}
     </p>
 
     <button
     class="p-1"
     onclick={() => visible = false}
+    aria-label="Close alert"
     >
         <i class="bi bi-x-square"></i>
     </button>
