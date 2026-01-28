@@ -42,6 +42,6 @@
 	</div>
 </nav>
 
-<main class="px-4 py-6">
+<main class="px-4 py-6 w-11/12 max-w-5xl mx-auto" transition:fade>
 	{@render children()}
 </main>
