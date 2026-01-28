@@ -21,8 +21,9 @@
     let alertWarningMessage = $state("This page is under construction. More components may be added later!");
 
     // cookies modal
-    import Modal from './Modal.svelte';
-    let showModalCookies = $state(false);
+    import ModalCookies from './ModalCookies.svelte';
+    // modal visibility TODO: make it show only once per user session
+    let showModalCookies = $state(true);
 
 
     // reactive div data
@@ -34,11 +35,16 @@
     <title>Svelte Garden | Components</title>
 </svelte:head>
 
-<!-- alerts and modal container -->
+<!-- alerts container -->
 <section class="flex flex-col gap-1 fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-lg z-50">
     <AlertInfo bind:visible={showAlertInfo} bind:message={alertInfoMessage} />
     <AlertError bind:visible={showAlertError} bind:message={alertErrorMessage} />
     <AlertWarning bind:visible={showAlertWarning} bind:message={alertWarningMessage} />
+</section>
+
+<!-- modal container -->
+<section>
+    <ModalCookies bind:visible={showModalCookies} />
 </section>
 
 <!-- page title -->
