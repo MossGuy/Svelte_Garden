@@ -62,7 +62,7 @@
 </section>
 
 <!-- reactive div -->
-<section>
+<section class="h-90 overflow-hidden">
     <h2>Reactive div:</h2>
     <!-- toggle buttons -->
     <div
@@ -86,7 +86,7 @@
             {#if experience === selectedExperience}
                 <div
                 in:fly={{ x: 200, duration: 300, opacity: 0, delay: 350 }}
-                out:fly={{ x: -200, duration: 300, opacity: 0 }}
+                out:fly={{ x: -200, duration: 300, opacity: 0, delay: 0 }}
 
                 class="border border-teal-700 rounded p-4 mx-auto w-3/5 mb-6 text-center"
                 >
@@ -94,8 +94,10 @@
                         My experience with: <br>
                         <span class="text-2xl text-teal-700">{experience.title}</span>
                     </h3>
-                    <p class="mb-4">{experience.description1}</p>
-                    <p class="mb-4">{experience.description2}</p>
+                    <div class="h-30 overflow-y-auto">
+                        <p class="mb-4">{experience.description1}</p>
+                        <p class="mb-4">{experience.description2}</p>
+                    </div>
                     <ul class="list-disc list-inside">
                         {#each experience.features as feature}
                             <li>{feature}</li>
