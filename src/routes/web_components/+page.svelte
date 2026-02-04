@@ -62,7 +62,7 @@
 </section>
 
 <!-- reactive div -->
-<section class="h-90 overflow-hidden">
+<section class="max-h-102 overflow-hidden">
     <h2>Reactive div:</h2>
     <!-- toggle buttons -->
     <div
