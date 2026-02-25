@@ -39,6 +39,7 @@
 	>
 		<a class="hover:underline" href="/search">News</a>
 		<a class="hover:underline" href="/web_components">Components</a>
+		<a class="hover:underline" href="/crud_template">CRUD template</a>
 	</div>
 </nav>
 
