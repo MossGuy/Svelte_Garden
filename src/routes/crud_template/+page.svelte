@@ -1,81 +1,194 @@
 <script lang="ts">
     import { fly } from 'svelte/transition';
+    import type { PageData } from './$types';
 
-    // import data from database
-    let { data } = $props();
-    $effect(() => {
-        // console.log('Data:', data);
-    });
+    let { data }: { data: PageData } = $props();
 
-    // dynamic view states
-    let current_view = $state('overview');
-    let current_item = $state('');
+    type Item = {
+        item_id: number;
+        item_name: string;
+        item_description: string;
+        creation_date: string;
+    };
 
-    function toggleView(view: string, item: string = '') {
-        console.log('Toggling view to:', view, 'for item:', item);
+    let current_view = $state<'overview' | 'read' | 'update' | 'create'>('overview');
+    let current_item = $state<Item | null>(null);
+
+    function toggleView(view: typeof current_view, item: Item | null = null) {
         current_view = view;
         current_item = item;
     }
-
-    // delete item function (placeholder)
-    function delete_item(item: string) {
-        if (confirm('Are you sure you want to delete ' + item + '?')) {
-            console.log('Deleting item:', item);
-        }
-    }
 </script>
 
-
+<!-- PAGE HEADER -->
 <section>
     <h1 class="text-2xl font-semibold">Items</h1>
-    <button onclick={() => toggleView('create')} class="text-teal-700 hover:text-orange-500">Create New Item</button>
+    <button
+        onclick={() => toggleView('create')}
+        class="text-teal-700 hover:text-orange-500">
+        Create
+    </button>
 </section>
 
-<!-- overview sectie -->
+
+<!-- OVERVIEW -->
 {#if current_view === 'overview'}
-<section class="overflow-y-auto"
-in:fly={{ y: 20, duration: 300 }}
-out:fly={{ y: -20, duration: 300 }}>
+<section
+    class="overflow-y-auto"
+    in:fly={{ y: 20, duration: 300 }}
+    out:fly={{ y: -20, duration: 300 }}>
+
    {#each data.items as item}
-    <div class="border-b py-1 my-1">
+    <div class="border-b py-2 my-2">
         <h3 class="text-lg font-semibold">{item.item_name}</h3>
-        <div class="flex gap-2">
-            <button onclick={() => toggleView('read', item.item_name)} class="text-teal-700 hover:text-orange-500">Read</button>
-            <button onclick={() => toggleView('update', item.item_name)} class="text-teal-700 hover:text-orange-500">Update</button>
-            <button onclick={() => delete_item(item.item_name)} class="text-teal-700 hover:text-orange-500">Delete</button>
+
+        <div class="flex gap-3 text-sm">
+            <button
+                onclick={() => toggleView('read', item)}
+                class="text-teal-700 hover:text-orange-500">
+                Read
+            </button>
+
+            <button
+                onclick={() => toggleView('update', item)}
+                class="text-teal-700 hover:text-orange-500">
+                Update
+            </button>
+
+            <form
+                method="POST"
+                action="?/delete"
+                onsubmit={(e) => {
+                    const confirmed = confirm('Are you sure you want to delete this item?');
+                    if (!confirmed) {
+                        e.preventDefault();
+                    }
+                }}
+            >
+                <input type="hidden" name="item_id" value={item.item_id} />
+
+                <button
+                    type="submit"
+                    class="text-red-600 hover:text-red-800">
+                    Delete
+                </button>
+            </form>
         </div>
     </div>
-    {/each}
+   {/each}
+
 </section>
 {/if}
 
-<!-- read sectie -->
-{#if current_view === 'read'}
-    <section class="p-4"
+
+<!-- READ -->
+{#if current_view === 'read' && current_item}
+<section
+    class="p-4"
     in:fly={{ y: 20, duration: 300 }}
     out:fly={{ y: -20, duration: 300 }}>
-        <h1 class="text-2xl font-semibold">{current_item}</h1>
-        <p>Details about {current_item}...</p>
-    </section>
-    <button onclick={() => toggleView('overview')} class="text-teal-700 hover:text-orange-500">Back to Overview</button>
+
+    <h2 class="text-2xl font-semibold mb-2">
+        {current_item.item_name}
+    </h2>
+
+    <p class="mb-2">
+        {current_item.item_description}
+    </p>
+
+    <small class="text-gray-500">
+        Created: {new Date(current_item.creation_date).toLocaleString()}
+    </small>
+</section>
+
+<button
+    onclick={() => toggleView('overview')}
+    class="text-teal-700 hover:text-orange-500">
+    Back to Overview
+</button>
 {/if}
 
-<!-- update sectie -->
-{#if current_view === 'update'}
-    <section class="p-4"
+
+<!-- UPDATE -->
+{#if current_view === 'update' && current_item}
+<section
+    class="p-4"
     in:fly={{ y: 20, duration: 300 }}
     out:fly={{ y: -20, duration: 300 }}>
-        <p>Updating: {current_item}</p>
-    </section>
-    <button onclick={() => toggleView('overview')} class="text-teal-700 hover:text-orange-500">Back to Overview</button>
+
+    <h2 class="text-xl font-semibold mb-3">
+        Update: {current_item.item_name}
+    </h2>
+
+    <form method="POST" action="?/update">
+        <input type="hidden" name="item_id" value={current_item.item_id} />
+
+        <label class="block mb-2">Item Name</label>
+        <input
+            type="text"
+            name="item_name"
+            value={current_item.item_name}
+            class="border rounded px-2 py-1 w-full mb-4" />
+
+        <label class="block mb-2">Description</label>
+        <textarea
+            name="item_description"
+            rows="4"
+            class="border rounded px-2 py-1 w-full mb-4 resize-none">
+        {current_item.item_description}</textarea>
+
+        <button
+            type="submit"
+            class="text-teal-700 hover:text-orange-500">
+            Save Changes
+        </button>
+    </form>
+</section>
+
+<button
+    onclick={() => toggleView('overview')}
+    class="text-teal-700 hover:text-orange-500">
+    Back to Overview
+</button>
 {/if}
 
-<!-- create sectie -->
+
+<!-- CREATE -->
 {#if current_view === 'create'}
-    <section class="p-4"
+<section
+    class="p-4"
     in:fly={{ y: 20, duration: 300 }}
     out:fly={{ y: -20, duration: 300 }}>
-        <p>Creating new item...</p>
-    </section>
-    <button onclick={() => toggleView('overview')} class="text-teal-700 hover:text-orange-500">Back to Overview</button>
+
+    <h2 class="text-xl font-semibold mb-3">
+        Create New Item
+    </h2>
+
+    <form method="POST" action="?/create">
+        <label class="block mb-2">Item Name</label>
+        <input
+            type="text"
+            name="item_name"
+            required
+            class="border rounded px-2 py-1 w-full mb-4" />
+
+        <label class="block mb-2">Description</label>
+        <textarea
+            name="item_description"
+            rows="4"
+            class="border rounded px-2 py-1 w-full mb-4 resize-none"></textarea>
+
+        <button
+            type="submit"
+            class="text-teal-700 hover:text-orange-500">
+            Create Item
+        </button>
+    </form>
+</section>
+
+<button
+    onclick={() => toggleView('overview')}
+    class="text-teal-700 hover:text-orange-500">
+    Back to Overview
+</button>
 {/if}
