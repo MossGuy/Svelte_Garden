@@ -123,16 +123,18 @@
     <form method="POST" action="?/update">
         <input type="hidden" name="item_id" value={current_item.item_id} />
 
-        <label class="block mb-2">Item Name</label>
+        <label for="item_name_update" class="block mb-2">Item Name</label>
         <input
             type="text"
-            name="item_name"
+            name="item_name_update"
+            id="item_name_update"
             value={current_item.item_name}
             class="border rounded px-2 py-1 w-full mb-4" />
 
-        <label class="block mb-2">Description</label>
+        <label for="item_description_update" class="block mb-2">Description</label>
         <textarea
-            name="item_description"
+            name="item_description_update"
+            id="item_description_update"
             rows="4"
             class="border rounded px-2 py-1 w-full mb-4 resize-none">
         {current_item.item_description}</textarea>
@@ -165,16 +167,18 @@
     </h2>
 
     <form method="POST" action="?/create">
-        <label class="block mb-2">Item Name</label>
+        <label for="item_name_create" class="block mb-2">Item Name</label>
         <input
             type="text"
-            name="item_name"
+            name="item_name_create"
+            id="item_name_create"
             required
             class="border rounded px-2 py-1 w-full mb-4" />
 
-        <label class="block mb-2">Description</label>
+        <label for="item_description_create" class="block mb-2">Description</label>
         <textarea
-            name="item_description"
+            name="item_description_create"
+            id="item_description_create"
             rows="4"
             class="border rounded px-2 py-1 w-full mb-4 resize-none"></textarea>
 
