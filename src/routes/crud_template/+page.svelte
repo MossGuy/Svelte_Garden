@@ -5,6 +5,10 @@
     // import data from database
     let { data }: { data: PageData } = $props();
 
+    $effect(() => {
+        console.log('Loaded items:', data.items);
+    });
+
     type Item = {
         item_id: number;
         item_name: string;
@@ -138,9 +142,7 @@
             name="item_description_update"
             id="item_description_update"
             rows="4"
-            class="border rounded px-2 py-1 w-full mb-4 resize-none">
-        {current_item.item_description}</textarea>
-
+            class="border rounded px-2 py-1 w-full mb-4 resize-none">{current_item.item_description}</textarea>
         <button
             type="submit"
             class="text-teal-700 hover:text-orange-500">
