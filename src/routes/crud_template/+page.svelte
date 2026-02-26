@@ -2,6 +2,7 @@
     import { fly } from 'svelte/transition';
     import type { PageData } from './$types';
 
+    // import data from database
     let { data }: { data: PageData } = $props();
 
     type Item = {
@@ -11,6 +12,7 @@
         creation_date: string;
     };
 
+    // responsive view state variables
     let current_view = $state<'overview' | 'read' | 'update' | 'create'>('overview');
     let current_item = $state<Item | null>(null);
 
