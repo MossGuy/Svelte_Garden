@@ -127,7 +127,7 @@
     </h2>
 
     <form method="POST" action="?/update">
-        <input type="hidden" name="item_id" value={current_item.item_id} />
+        <input type="hidden" name="item_id_update" value={current_item.item_id} />
 
         <label for="item_name_update" class="block mb-2">Item Name</label>
         <input

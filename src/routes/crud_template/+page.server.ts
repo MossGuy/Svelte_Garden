@@ -24,8 +24,8 @@ export const actions = {
   create: async ({ request }) => {
     const formData = await request.formData();
 
-    const name = formData.get('item_name') as string;
-    const description = formData.get('item_description') as string;
+    const name = formData.get('item_name_create') as string;
+    const description = formData.get('item_description_create') as string;
 
     if (!name) {
       return fail(400, { error: 'Name is required' });
@@ -45,9 +45,9 @@ export const actions = {
   update: async ({ request }) => {
     const formData = await request.formData();
 
-    const id = formData.get('item_id');
-    const name = formData.get('item_name');
-    const description = formData.get('item_description');
+    const id = formData.get('item_id_update');
+    const name = formData.get('item_name_update');
+    const description = formData.get('item_description_update');
 
     await db.query(
       'UPDATE items SET item_name = ?, item_description = ? WHERE item_id = ?',
